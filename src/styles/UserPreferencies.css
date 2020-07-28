@@ -1,0 +1,13 @@
+.userPreferencies{
+    border: 1px solid #AFAFAF;
+    border-radius: 20px;
+    text-align: center;
+    margin: 5% 5% 5% 5%;
+    padding: 20px 20px 0px 20px;
+}
+/* pantalla de escritorio */
+@media only screen and (min-width: 600px){
+    .userPreferencies{
+        margin: 5% 20% 5% 20%;
+    }
+}

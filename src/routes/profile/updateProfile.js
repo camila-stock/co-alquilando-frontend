@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import {SessionContext} from '../../store'
+import { useHistory } from "react-router-dom";
 import { Form, notification } from "antd";
 import CustomizedForm from "../../components/CustomizedForm";
 import ApiRequest from "../../util/ApiRequest";
@@ -77,7 +78,7 @@ const userData = {
         },
         {
           label: "Sexo",
-          name: "userSex",
+          name: ["attributes", "sex"],
           component: "Select",
           options: [
             { name: "Femenino", value: "FEMALE" },
@@ -89,12 +90,12 @@ const userData = {
       [
         {
           label: "Nacionalidad",
-          name: "userNationality",
+          name: ["attributes", "nationality"],
           component: "Input",
         },
         {
           label: "Ciudad",
-          name: "userCity",
+          name: ["attributes", "city"],
           component: "Input",
         },
       ],
@@ -110,6 +111,12 @@ const userData = {
           component: "Upload",
         },
       ],
+      [
+        {
+          label: "Preferencias",
+          component: "link",
+        },
+      ]
     ],
   },
 };
@@ -118,31 +125,43 @@ const UpdateForm = (props) => {
   const [form] = Form.useForm();
   const [fields, setFields] = useState(null);
   const [idUser, setIdUser] = useState(null);
-  let { nickname } = useParams();
   const history = useHistory();
+  const { state } = useContext(SessionContext);
   useEffect(() => {
     let asyncGetUser = async () => {
-      await ApiRequest.get(`/user/${nickname}`).then((res) => {
+      await ApiRequest.get(`/user/${state.user.userNickname}`).then((res) => {
         let { data } = res;
+        let attributes = {};
+        if (data.attributes) {
+          data.attributes.forEach((t) => {
+            attributes = { ...attributes, [t.attributeType]: t.value };
+          });
+        }
         let formated = {
           ...data,
           userBirthDate: data.userBirthDate ? moment(data.userBirthDate) : null,
           userConfirmEmail: data.userEmail,
         };
+        delete formated.attributes;
+        formated = { ...formated, attributes };
         form.setFieldsValue(formated);
         setIdUser(formated.id);
       });
     };
     asyncGetUser();
-  }, [form, nickname]);
+  }, [form,state]);
   useEffect(() => {
     if (fields) {
-      let bodyReq = fields;
+      var attributes = Object.entries(fields.attributes);
+      let arrayAttributes = [];
+      attributes.map((t) => {
+       return arrayAttributes.push({ attributeType: t[0], value: t[1] });
+      });
+      let bodyReq = { ...fields, attributes: arrayAttributes };
       delete bodyReq.userConfirmEmail;
       delete bodyReq.userConfirmPassword;
       let asyncPutUser = async () => {
         await ApiRequest.put(`/user/${idUser}`, bodyReq).then((res) => {
-          console.log(res);
           if (res.status === 200) {
             notification.success({
               message: `Datos Actualizados`,
@@ -159,11 +178,11 @@ const UpdateForm = (props) => {
       };
       asyncPutUser();
     }
-  }, [fields, idUser,history]);
+  }, [fields, idUser, history]);
   return (
-      <ContentWrapper header footer>
-        <CustomizedForm form={form} data={userData} onfinish={setFields} />
-      </ContentWrapper>
+    <ContentWrapper header footer>
+      <CustomizedForm form={form} data={userData} onfinish={setFields} />
+    </ContentWrapper>
   );
 };
 

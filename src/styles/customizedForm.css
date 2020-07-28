@@ -45,6 +45,10 @@
     font-size: 18px;
     font-weight: bold;
 }
+.ant-slider-mark-text{
+    transform: translateX(0%);
+    left: -2%;
+}
 
 .Checkbox{
     border: 1px solid #e4e4e4;
@@ -90,4 +94,5 @@
         column-gap: 5px;
         text-align: justify;
     }
+    
 }
