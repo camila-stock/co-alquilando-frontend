@@ -13,7 +13,7 @@
     "antd": "^4.3.4",
     "antd-img-crop": "^3.9.0",
     "aws-amplify": "^3.0.19",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "caniuse-lite": "^1.0.30001234",
     "google-map-react": "^1.1.7",
     "google-maps-react": "^2.0.6",
