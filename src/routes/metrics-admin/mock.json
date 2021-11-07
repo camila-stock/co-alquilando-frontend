@@ -1,0 +1,118 @@
+{
+  "charts": [
+    {
+      "type": "bar",
+      "data": {
+        "datasets": [
+          {
+            "label": "Historial de usuarios creados",
+            "data": {
+              "Sat Oct 02 00:00:00 ART 2021": 0,
+              "Sun Oct 03 00:00:00 ART 2021": 0,
+              "Mon Oct 04 00:00:00 ART 2021": 0,
+              "Tue Oct 05 00:00:00 ART 2021": 1,
+              "Wed Oct 06 00:00:00 ART 2021": 0,
+              "Thu Oct 07 00:00:00 ART 2021": 1,
+              "Fri Oct 08 00:00:00 ART 2021": 0,
+              "Sat Oct 09 00:00:00 ART 2021": 1,
+              "Sun Oct 10 00:00:00 ART 2021": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "line",
+      "data": {
+        "datasets": [
+          {
+            "label": "Acumulativo de usuarios creados",
+            "data": {
+              "Sat Oct 02 00:00:00 ART 2021": 0,
+              "Sun Oct 03 00:00:00 ART 2021": 0,
+              "Mon Oct 04 00:00:00 ART 2021": 0,
+              "Tue Oct 05 00:00:00 ART 2021": 1,
+              "Wed Oct 06 00:00:00 ART 2021": 1,
+              "Thu Oct 07 00:00:00 ART 2021": 2,
+              "Fri Oct 08 00:00:00 ART 2021": 2,
+              "Sat Oct 09 00:00:00 ART 2021": 3,
+              "Sun Oct 10 00:00:00 ART 2021": 3
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "doughnut",
+      "data": {
+        "labels": [
+          "Hombre",
+          "Mujer",
+          "Sin declarar"
+        ],
+        "datasets": [
+          {
+            "label": "Usuarios creados por genero",
+            "data": [
+              2,
+              0,
+              1
+            ],
+            "backgroundColors": [
+              "#431ac5",
+              "#125894",
+              "#9a6af1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "bar",
+      "data": {
+        "datasets": [
+          {
+            "label": "Usuarios creados por edad",
+            "data": {
+              "18-": 0,
+              "18 a 23": 2,
+              "24 a 29": 0,
+              "30 a 35": 0,
+              "36 a 41": 1,
+              "42 a 47": 0,
+              "48 a 53": 0,
+              "54 a 59": 0,
+              "60+": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "doughnut",
+      "data": {
+        "labels": [
+          "Propietario",
+          "Inquilino"
+        ],
+        "datasets": [
+          {
+            "label": "Usuarios creados por tipo de usuario",
+            "data": [
+              0,
+              3
+            ],
+            "backgroundColor": [
+              "#8f8115",
+              "#4b25c2"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "singleData": {
+    "Promedio de usuarios creados por dia": "0.333",
+    "Cantidad de usuarios": "3"
+  }
+}

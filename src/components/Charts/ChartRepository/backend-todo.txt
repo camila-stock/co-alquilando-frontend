@@ -1,0 +1,5 @@
+Usuarios creados por genero -> Usuarios creados por género
+
+Fri Oct 08 00:00:00 ART 2021 -> 08/10/2021
+
+Usuarios creados por edad (doughnut) -> (bar)

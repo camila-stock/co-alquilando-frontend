@@ -7,7 +7,7 @@ const url = {
 }
 
 export default axios.create({
-    baseURL: url.aws,
+    baseURL: url.local,
     headers:{
         'Content-Type':'application/json'
     }

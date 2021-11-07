@@ -13,8 +13,9 @@
     "antd": "^4.3.4",
     "antd-img-crop": "^3.9.0",
     "aws-amplify": "^3.0.19",
-    "axios": "^0.19.2",
+    "axios": "^0.24.0",
     "caniuse-lite": "^1.0.30001234",
+    "chart.js": "^3.6.0",
     "google-map-react": "^1.1.7",
     "google-maps-react": "^2.0.6",
     "i18next": "^19.7.0",
@@ -23,6 +24,7 @@
     "node-sass": "^4.14.1",
     "randomstring": "^1.1.5",
     "react": "^16.13.1",
+    "react-chartjs-2": "^3.3.0",
     "react-chat-widget": "^3.0.5",
     "react-dom": "^16.13.1",
     "react-facebook-login": "^4.1.1",
@@ -41,7 +43,7 @@
     "uuidv4": "^6.1.1"
   },
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "HTTPS=true & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
