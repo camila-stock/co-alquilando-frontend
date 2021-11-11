@@ -4,12 +4,20 @@ import { Line, Bar, Doughnut } from 'react-chartjs-2';
 const ChartRepository = ({ metric, keys }) => {
 
 	const commonsProps = {
-		height: '500px',
-		width: '500px',
+		height: '400px',
+		width: '720px',
+		options: {
+			responsive: true,
+			plugins: {
+				legend: {
+					position: 'right',
+				}
+			}
+		},
 	}
 
 	const data = {
-		label: metric.data.label,
+		labels: metric.data.labels,
 		datasets : [{
 			label: metric.data.datasets[0].label,
 			data: metric.data.datasets[0].data,
@@ -29,7 +37,7 @@ const ChartRepository = ({ metric, keys }) => {
 				'rgba(153, 102, 255, 1)',
 				'rgba(255, 159, 64, 1)',
 			],
-		}]
+		}],
 	}
 
 	const repository = {

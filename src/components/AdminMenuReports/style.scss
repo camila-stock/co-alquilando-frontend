@@ -2,11 +2,12 @@
 .page.reports-admin{
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   margin: auto;
-  
+  .menu{
+    padding: 0 !important;
+  }
 }
-
 .menu.reports {
   display: flex;
   flex-direction: row;

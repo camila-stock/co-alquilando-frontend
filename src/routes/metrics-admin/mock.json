@@ -91,10 +91,6 @@
     {
       "type": "doughnut",
       "data": {
-        "labels": [
-          "Propietario",
-          "Inquilino"
-        ],
         "datasets": [
           {
             "label": "Usuarios creados por tipo de usuario",
@@ -107,6 +103,10 @@
               "#4b25c2"
             ]
           }
+        ],
+        "labels": [
+          "Propietario",
+          "Inquilino"
         ]
       }
     }
