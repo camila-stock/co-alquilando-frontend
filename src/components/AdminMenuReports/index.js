@@ -1,28 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Menu } from 'antd';
-import PieChart from '../Charts/PieChart';
-import ColumChart from '../Charts/ColumChart';
 import ChartRepository from '../Charts/ChartRepository';
-import Spin from '../Spin';
-import WaitingSelection from '../WaitingSelection';
-import { SessionContext } from '../../store';
-import ApiRequest from '../../util/ApiRequest';
-
-const items = [
-  'Métricas de Usuarios',
-  'Métricas de Grupos',
-  'Métricas de Propiedades',
-  'Métricas de Paquetes Contratados',
-  'Métricas de Publicidades',
-];
 
 const AdminMenuReports = ({
   data,
+  items,
 }) => {
     const [selectedItem, setselectedItem] = useState('0');
     const handleItem = ({key}) => setselectedItem(key);
-
-    console.log(`data`, data)
 
     const newMetrics = data && data.map( d => {
       return (

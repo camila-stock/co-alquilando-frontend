@@ -1,44 +1,44 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Menu, Switch, Divider } from 'antd';
+import React, { useState, useContext } from 'react';
 import ContentWrapper from '../../components/ContentWrapper';
 import AdminMenuReports from '../../components/AdminMenuReports';
-import ColumChart from '../../components/Charts/ColumChart';
 import { SessionContext } from '../../store';
 import ApiRequest from '../../util/ApiRequest';
 import FilterNav from '../../components/FilterNav';
-import WaitingSelection from '../../components/WaitingSelection';
-import { HomeOutlined } from "@ant-design/icons";
-
+const items = [
+	'Métricas de Usuarios',
+	'Métricas de Grupos',
+	'Métricas de Propiedades',
+	'Métricas de Paquetes Contratados',
+	'Métricas de Publicidades'
+];
 const MetricsAdmin = () => {
-    const [metric, setMetric] = useState(null);
-    const { state } = useContext(SessionContext);
-    const breadscrumb = [
-        { Métricas: '/reports-admin'},
-    ];
+	const [ metric, setMetric ] = useState(null);
+	const { state } = useContext(SessionContext);
+	const breadscrumb = [ { Métricas: '/reports-admin' } ];
 
-    const handleSearch = async dates => {
-        const allData = true;
-        const [ from, to ] = dates.map( f => f.split("T")[0]);
-        const body = { allData, from, to };
-        const allProm = await Promise.all([
-            ApiRequest.post(`metrics/users`, body),
-            ApiRequest.post(`metrics/groups`, body),
-            ApiRequest.post(`metrics/properties`, body),
-            ApiRequest.post(`metrics/package_purchases`, body),
-            ApiRequest.post(`metrics/ads`, body),
-        ]);
-        const data = allProm.map( prom => prom.data);
-        setMetric(data);
-    }
+	const handleSearch = async (dates) => {
+		const allData = true;
+		const [ from, to ] = dates.map((f) => f.split('T')[0]);
+		const body = { allData, from, to };
+		const allProm = await Promise.all([
+			ApiRequest.post(`metrics/users`, body),
+			ApiRequest.post(`metrics/groups`, body),
+			ApiRequest.post(`metrics/properties`, body),
+			ApiRequest.post(`metrics/package_purchases`, body),
+			ApiRequest.post(`metrics/ads`, body)
+		]);
+		const data = allProm.map((prom) => prom.data);
+		setMetric(data);
+	};
 
-    return (
-        <ContentWrapper topNav breadscrumb={breadscrumb}>
-            <div className="page reports-admin">
-                <FilterNav onSearch={handleSearch} />
-                <AdminMenuReports data={metric} />
-            </div>
-        </ContentWrapper>
-    );
+	return (
+		<ContentWrapper topNav breadscrumb={breadscrumb}>
+			<div className="page reports-admin">
+				<FilterNav onSearch={handleSearch} />
+				<AdminMenuReports data={metric} items={items} />
+			</div>
+		</ContentWrapper>
+	);
 };
 
 export default MetricsAdmin;
