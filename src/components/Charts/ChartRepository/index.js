@@ -5,12 +5,12 @@ const ChartRepository = ({ metric, keys }) => {
 
 	const commonsProps = {
 		height: '400px',
-		width: '720px',
+		width: '600px',
 		options: {
 			responsive: true,
 			plugins: {
 				legend: {
-					position: 'right',
+					position: 'top',
 				}
 			}
 		},
@@ -41,7 +41,7 @@ const ChartRepository = ({ metric, keys }) => {
 	}
 
 	const repository = {
-		doughnut:	<Doughnut data={data} {...commonsProps}/>,
+		doughnut:	<Doughnut data={data} {...commonsProps} height="300px" width="400px"/>,
 		line:	<Line data={data} {...commonsProps}/>,
 		bar:	<Bar data={data} {...commonsProps}/>,
 	}

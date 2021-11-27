@@ -1,5 +1,56 @@
-Usuarios creados por genero -> Usuarios creados por género
+metrics/users
 
-Fri Oct 08 00:00:00 ART 2021 -> 08/10/2021
+{
+  "type": "doughnut",
+  "data": {
+      "datasets": [
+          {
+              "label": "Usuarios creados por edad",
+              "data": {
+                  "18-": 0,
+                  "18 a 23": 2,
+                  "24 a 29": 0,
+                  "30 a 35": 0,
+                  "36 a 41": 1,
+                  "42 a 47": 0,
+                  "48 a 53": 0,
+                  "54 a 59": 0,
+                  "60+": 0
+              }
+          }
+      ]
+  }
+}
 
-Usuarios creados por edad (doughnut) -> (bar)
+{
+  "type": "doughnut",
+  "data": {
+      "labels": [
+        "18-",
+        "18 a 23",
+        "24 a 29",
+        "30 a 35",
+        "36 a 41",
+        "42 a 47",
+        "48 a 53",
+        "54 a 59",
+        "60+"
+      ]
+      "datasets": [
+          {
+              "label": "Usuarios creados por edad",
+              "data": [
+                  0,
+                  2,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+              ]
+          }
+      ]
+  }
+},

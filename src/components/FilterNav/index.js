@@ -6,6 +6,7 @@ const FilterNav = ({ onSearch }) => {
     const [date, setDate] = useState();
 
     const handleOnSearch = () => {
+        if (!date) return;
         const dates = date.map( d => new Date(d).toISOString());
         onSearch(dates);
     }

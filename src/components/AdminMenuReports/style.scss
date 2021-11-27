@@ -2,7 +2,7 @@
 .page.reports-admin{
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 98%;
   margin: auto;
   .menu{
     padding: 0 !important;
@@ -24,7 +24,8 @@
     width: 100%;
     border: 1px solid #dedede;
     display: flex;
-    flex-direction: row;
+    gap: 64px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
