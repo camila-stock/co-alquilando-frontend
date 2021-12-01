@@ -13,7 +13,7 @@ const FilterNav = ({ onSearch }) => {
 
 	return (
 		<div className="filter-nav">
-			<RangePicker onChange={setDate} placeholder={["Fecha Inicio", "Fecha Fin"]} />
+			<RangePicker format="DD-MM-YYYY" onChange={setDate} placeholder={["Fecha Inicio", "Fecha Fin"]} />
             <Button onClick={handleOnSearch}>Filtrar</Button>
 		</div>
 	);

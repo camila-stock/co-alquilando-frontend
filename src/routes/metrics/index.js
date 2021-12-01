@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ContentWrapper from '../../components/ContentWrapper';
 import AdminMenuReports from '../../components/AdminMenuReports';
 import { SessionContext } from '../../store';
@@ -13,26 +13,46 @@ const items = [
 const Metrics = () => {
 
 	const [metric, setMetric] = useState();
+	const [error, setError] = useState();
 	const { state } = useContext(SessionContext);
-	const breadscrumb = [{'Mis Reportes': '/reports'}]
+	const breadscrumb = [{'Mis Reportes': '/reports'}];
+
+	useEffect(async () => {
+		const allData = true;
+		const from = new Date().toISOString(2020);
+		const to = new Date().toISOString(2022);
+		const body = { allData, from, to };
+		const allProm = await Promise.all([
+			ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
+			ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
+		]);
+		const data = allProm.map((prom) => prom.data);
+		setMetric(data);
+	},[])
 
 	const handleSearch = async dates => {
-			const allData = true;
+			setMetric(null);
+			setError(null);
+			const allData = false;
 			const [ from, to ] = dates.map( f => f.split("T")[0]);
 			const body = { allData, from, to };
-			const allProm = await Promise.all([
-				ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
-				ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
-			]);
-			const data = allProm.map( prom => prom.data);
-			setMetric(data);
+			try {
+				const allProm = await Promise.all([
+					ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
+					ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
+				]);
+				const data = allProm.map( prom => prom.data);
+				setMetric(data);
+			} catch (error) {
+				setError('Hubo un error. Intente con otro rango de fechas.');			
+			}
 	}
 
 	return (
 			<ContentWrapper topNav breadscrumb={breadscrumb}>
 					<div className="page reports-admin">
 							<FilterNav onSearch={handleSearch} />
-							<AdminMenuReports data={metric} items={items} />
+							<AdminMenuReports data={metric} items={items} error={error}/>
 					</div>
 			</ContentWrapper>
 	);

@@ -5,6 +5,7 @@ import ChartRepository from '../Charts/ChartRepository';
 const AdminMenuReports = ({
   data,
   items,
+  error,
 }) => {
     const [selectedItem, setselectedItem] = useState('0');
     const handleItem = ({key}) => setselectedItem(key);
@@ -42,6 +43,9 @@ const AdminMenuReports = ({
         {data 
           ? newMetrics[selectedItem] 
           : "Ingrese fechas" }
+        {error 
+        ? <div style={{color: 'red'}}>{error}</div>
+        : null}
       </section>
     </div>
     );
