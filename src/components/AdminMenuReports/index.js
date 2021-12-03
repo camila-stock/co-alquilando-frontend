@@ -10,10 +10,10 @@ const AdminMenuReports = ({
     const [selectedItem, setselectedItem] = useState('0');
     const handleItem = ({key}) => setselectedItem(key);
 
-    const newMetrics = data && data.map( d => {
+    const newMetrics = data && data.map((d, index) => {
       return (
-        <>
-          <div style={{ color: "#656565", width: 600}}>
+        <div key={index}>
+          <div className="metric-tab">
             {Object.keys(d.singleData).map( labels => (
               <div style={{ display: "flex", gap: 8}}>
                 <div>{`${labels}:`}</div>
@@ -22,7 +22,7 @@ const AdminMenuReports = ({
             ))}
           </div>
           {d.charts.map( t => <ChartRepository metric={t} />) }
-        </>
+        </div>
       )
     })
 
@@ -38,7 +38,6 @@ const AdminMenuReports = ({
           </Menu.Item>
         ))}
       </Menu>
-
       <section className="charts">
         {data 
           ? newMetrics[selectedItem] 

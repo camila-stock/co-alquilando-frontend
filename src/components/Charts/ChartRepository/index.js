@@ -1,11 +1,11 @@
 import React from 'react';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 
-const ChartRepository = ({ metric, keys }) => {
+const ChartRepository = ({ metric }) => {
 
 	const commonsProps = {
-		height: '400px',
-		width: '600px',
+		height: 400,
+		width: 600,
 		options: {
 			responsive: true,
 			plugins: {
@@ -41,13 +41,13 @@ const ChartRepository = ({ metric, keys }) => {
 	}
 
 	const repository = {
-		doughnut:	<Doughnut data={data} {...commonsProps} height="300px" width="400px"/>,
-		line:	<Line data={data} {...commonsProps}/>,
-		bar:	<Bar data={data} {...commonsProps}/>,
+		line:			<Line data={data} {...commonsProps}  />,
+		bar:			<Bar data={data} {...commonsProps}  />,
+		doughnut:	<Doughnut data={data} {...commonsProps} style={{ width: "50%" }} />,
 	}
 
 	return (
-		<div style={{ textAlign: '-webkit-center' }} key={keys}>
+		<div style={{ textAlign: 'center', padding: '36px 0' }}>
 			{repository[metric.type] || metric.doughnut}
 		</div>
 	);
