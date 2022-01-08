@@ -40,13 +40,12 @@
 }
 
 .notifications .NotificationClose {
-    opacity: 50% !important;
     border: none;
     background: none;
     cursor: pointer;
     box-sizing: unset;
     -webkit-appearance: unset;
-    color: #000
+    color: #0000008f
 }
 
 .notifications .NotificationClose:hover {
