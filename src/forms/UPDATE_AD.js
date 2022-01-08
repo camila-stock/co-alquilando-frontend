@@ -17,6 +17,12 @@ const adFields = {
           component: "InputCurrency",
           required: true,
         },
+        {
+          label: "Url del sitio",
+          name: "url",
+          component: "Input",
+          required: false,
+        },
       ],
       [
         {
@@ -62,7 +68,15 @@ const adFields = {
           component: "Upload",
           required: true,
         },
-      ]
+      ],
+      [
+        {
+          label: "Url del sitio",
+          name: "url",
+          component: "Input",
+          required: false,
+        },
+      ],
     ],
   },
 };

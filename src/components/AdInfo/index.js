@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Button } from 'antd'
+import Filters from '../Filters';
 
-const PackagePropertyInfo = ({count}) => {
+const AdInfo = ({count, onFilter}) => {
     return (
         <div className="side">
             <section className="package-property-info">
@@ -19,8 +20,11 @@ const PackagePropertyInfo = ({count}) => {
                     </Link>
                 </div>
             </section>
+            <section>
+            <Filters title="Filtros" type="ads"  onFilter={onFilter}/>
+            </section>
         </div>
     )
 }
 
-export default PackagePropertyInfo;
+export default AdInfo;

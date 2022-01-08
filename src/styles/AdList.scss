@@ -49,6 +49,7 @@
     width: 100%;
     padding: 1px 5px;
     .package-property-info {
+      margin-bottom: 2em;
       display: grid;
       justify-items: center;
       background-color: var(--grey);
@@ -95,6 +96,12 @@
   .ad-card--content-divider{
     width: 80%;
   }
+
+  .ads__pagination {
+    margin-top: 3em;
+    width: -webkit-fill-available;
+    text-align: center;
+  }
 }
 
 /* pantalla de escritorio */
@@ -111,6 +118,7 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
+
       .ant-card {
         min-width: 600px;
         max-width: 600px;

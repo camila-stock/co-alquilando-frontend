@@ -42,7 +42,7 @@ const MyProfile = (props) => {
   }, [state, datos]);
 
   return (
-    <ContentWrapper topNav>
+    <ContentWrapper topNav footer>
       <div style={{padding:'20px 0'}}>
 
       {!datos ? <Spin /> :null}

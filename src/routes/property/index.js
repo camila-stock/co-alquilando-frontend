@@ -137,7 +137,7 @@ const Property = () => {
 	);
 
 	return (
-		<ContentWrapper topNav optionsNav>
+		<ContentWrapper topNav footer optionsNav>
 			<div className="form-property">
 				<CustomizedForm form={form} data={propertyFields} onfinish={postProperty} />
 			</div>

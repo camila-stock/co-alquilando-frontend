@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, InputNumber, Checkbox } from 'antd';
+import { Button, Form, Input, InputNumber, Checkbox } from 'antd';
 import { FilterOutlined, CloseOutlined, DownOutlined } from "@ant-design/icons";
 import SelectDB from '../InputRepository/SelectDB'
 
@@ -76,20 +76,52 @@ const FilterProperties = ({onFilter}) => {
     )
 }
 
-const Filters = ({title, onFilter}) => {
+const FilterAds = ({onFilter}) => {
+    const [filters] = Form.useForm();
+
+    const sendFilters = values => {
+        let filtros = Object.entries(values).filter( f => f[1] );
+        let json = {}
+        filtros.map( m => json = {...json, [m[0]]: m[1] } )
+        onFilter(json)
+    }
+
+    return (
+        <div className="panel" >
+            <div className="filter-content">
+                <Form form={filters} onFinish={sendFilters}>
+                    <div className="form">
+                        <Form.Item name="filter" label="Nombre">
+                            <Input size="small"/>
+                        </Form.Item>
+
+                        <Form.Item name="status" label="Publicidades activas" valuePropName="checked">
+                            <Checkbox />
+                        </Form.Item>
+
+                    </div>
+                    <Form.Item>
+                        <Button htmlType="submit">Filtrar</Button>
+                    </Form.Item>
+                </Form>
+            </div>
+        </div>
+    )
+}
+
+const Filters = ({title, onFilter, type = 'properties'}) => {
     const [collapse, setCollapse] = useState( window.screen.width > 600 ? true : false );
     const toggleCollapse = () => setCollapse(!collapse);
+    const filter = type === 'properties' ? <FilterProperties onFilter={onFilter} /> : <FilterAds onFilter={onFilter} />;
 
     return (
         <div className="wrapper-filter">
             <div className="header" onClick={toggleCollapse}>
                 <span><FilterOutlined />{title}</span>
-                {collapse ? <CloseOutlined /> : <DownOutlined />} 
+                {collapse ? <CloseOutlined className="filter__icon-button" /> : <DownOutlined className="filter__icon-button"/>} 
             </div>
 
-            {collapse &&
-                <FilterProperties onFilter={onFilter} />
-            }
+            {collapse && filter}
             
         </div>
     )

@@ -113,7 +113,7 @@ const UpdateProperty = () => {
 
     return (
         <div>
-            <ContentWrapper topNav breadscrumb={breadscrumb}>
+            <ContentWrapper topNav footer breadscrumb={breadscrumb}>
                 <CustomizedForm form={form} data={propertyFields} onfinish={updateProperty} onDelete={onDelete} />
             </ContentWrapper>
         </div>

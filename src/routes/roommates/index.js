@@ -36,7 +36,7 @@ const Match = () => {
 		},[ state.user ]);
 
 	return (
-    <ContentWrapper topNav optionsNav>
+    <ContentWrapper topNav footer optionsNav>
       <div className="roommates-wrapper">
         <div className="info-column">
           {!matched ? (

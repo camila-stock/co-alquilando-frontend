@@ -62,7 +62,7 @@ const MetricsAdmin = () => {
 	};
 
 	return (
-		<ContentWrapper topNav breadscrumb={breadscrumb}>
+		<ContentWrapper topNav breadscrumb={breadscrumb} footer>
 			<div className="page reports-admin">
 				<FilterNav onSearch={handleSearch} />
 				<AdminMenuReports data={metric} items={items} error={error} />
