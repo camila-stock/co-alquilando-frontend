@@ -9,7 +9,7 @@ const AdInfo = ({count, onFilter}) => {
             <section className="package-property-info">
                 <div className="current">
                     <div className="info">
-                        Tienes {count} publicidades publicadas 
+                        Total de publicidades: {count} 
                     </div>
                 </div>
                 <div className="publish">
