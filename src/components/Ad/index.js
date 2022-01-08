@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Card, Divider, Button, notification, Modal } from "antd";
+import { Card, Divider, Button } from "antd";
 import { Link } from "react-router-dom";
-import {
-  CheckCircleOutlined,
-  EditOutlined,
-  ExclamationCircleOutlined,
-} from "@ant-design/icons";
-import ApiRequest from "../../util/ApiRequest";
-import hostname from '../../util/getHostName';
+import {CheckCircleOutlined,EditOutlined} from "@ant-design/icons";
 import moment from "moment";
 
 const image = "http://anokha.world/images/not-found.png";
 
 const AdCard = (props) => {
   const [photo, setPhoto] = useState();
-  const { confirm } = Modal;
 
   useEffect(() => {
     let asyncGetPhoto = async () => {
@@ -36,32 +29,6 @@ const AdCard = (props) => {
       setPhoto(photoJSON);
     }
   }, [props.id, props.image]);
-
-  const onDelete = async () => {
-    await ApiRequest.delete(`/ad/${props.id}`).then((res) => {
-      notification.success({
-        message: `Publicidad eliminada con éxito`,
-        placement: "bottomLeft",
-      });
-    }).then(async (res) => {
-      let { data } = await ApiRequest.get(`/ad`);
-      props.setDatos(data);
-    });
-  };
-
-  const showDelete = () => {
-    confirm({
-      title: "¿Desea eliminar esta publicidad?",
-      icon: <ExclamationCircleOutlined />,
-      content: "Si selecciona 'Si', se desactivará la publicidad.",
-      okText: "Si",
-      okType: "danger",
-      cancelText: "No",
-      onOk() {
-        onDelete();
-      },
-    });
-  };
 
   return (
     <Card hoverable>
@@ -99,9 +66,6 @@ const AdCard = (props) => {
           </div>
           <Divider />
           <div className="ad-card--content-buttons">
-            {props.active && <Button danger onClick={showDelete}>
-              Desactivar
-            </Button>}
             <Link to={`/ad/${props.id}/update`}>
               <Button>
                 <EditOutlined title="Editar" />

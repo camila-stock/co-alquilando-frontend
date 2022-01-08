@@ -11,16 +11,16 @@ import Spin from "../../components/Spin";
 const AdList = () => {
   const [datos, setDatos] = useState(null);
   const [page, setPage] = useState(1);
-  const [size] = useState(9);
+  const [size] = useState(5);
 	const [params, setParams] = useState();
-  const onChange = (page) => setPage(page);
   const breadscrumb = [{ Publicidades: "/ads" }];
+  
+  const onChange = (page) => setPage(page);
 
   useEffect(() => {
     let asyncGet = async () => {
       try {
-        // let { data } = await ApiRequest.get(`/ad`, {page: page - 1, size, ...params});
-        let { data } = await ApiRequest.get(`/ad`);
+        let { data } = await ApiRequest.get(`/ad/pageable`, { page, size, ...params });
         setDatos(data);
       } catch (e) {
         notification.error({
@@ -30,26 +30,26 @@ const AdList = () => {
       }
     };
     asyncGet();
-  }, [page, size, params]);
+  }, [page, params, size]);
 
   return (
     <ContentWrapper topNav breadscrumb={breadscrumb} footer>
       <div className="ads-list--content">
-        <AdInfo count={datos?.length} onFilter={setParams} />
+        <AdInfo count={datos?.totalElements} onFilter={setParams} />
         
 
         <div className="ads">
           {!datos ? <Spin /> : null}
 
-          {datos?.length
-            ? datos.map((a) => {
+          {datos?.totalElements
+            ? datos?.adList.map((a) => {
                 return (
                   <AdCard key={a.id} {...a} datos={datos} setDatos={setDatos} />
                 );
               })
             : null}
 
-          {datos && !datos.length ? (
+          {datos && !datos.totalElements ? (
             <div className="no-groups">
               <WaitingSelection
                 message="No tienes ninguna publicidad publicada"
@@ -63,7 +63,7 @@ const AdList = () => {
             <Pagination
               current={page}
               onChange={onChange}
-              total={6}
+              total={datos?.totalElements}
               pageSize={size}
             />
           </div>

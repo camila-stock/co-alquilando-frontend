@@ -91,18 +91,18 @@ const FilterAds = ({onFilter}) => {
             <div className="filter-content">
                 <Form form={filters} onFinish={sendFilters}>
                     <div className="form">
-                        <Form.Item name="name" label="Nombre">
+                        <Form.Item name="filter" label="Nombre">
                             <Input size="small"/>
                         </Form.Item>
 
-                        <Form.Item name="active" label="Publicidades activas" valuePropName="checked">
+                        <Form.Item name="status" label="Publicidades activas" valuePropName="checked">
                             <Checkbox />
                         </Form.Item>
 
+                    </div>
                     <Form.Item>
                         <Button htmlType="submit">Filtrar</Button>
                     </Form.Item>
-                    </div>
                 </Form>
             </div>
         </div>
