@@ -13,7 +13,7 @@ const Ring = ({ notifications }) => {
 	useEffect(() => { return () => { new AbortController().abort(); } })
 	return (
 		<Badge size="small" count={notifications}>
-			<BellOutlined />
+			<a href="/" style={{margin:0,padding:0}}><BellOutlined /></a>
 		</Badge>
 	);
 };

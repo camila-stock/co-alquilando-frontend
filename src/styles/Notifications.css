@@ -46,6 +46,7 @@
     cursor: pointer;
     box-sizing: unset;
     -webkit-appearance: unset;
+    color: #000
 }
 
 .notifications .NotificationClose:hover {

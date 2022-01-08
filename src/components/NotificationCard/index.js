@@ -51,7 +51,11 @@ const Close = ({ id, setNotifications, notifications }) => {
     setNotifications(notifications?.filter((n) => n.id !== id));
   };
 
-  return <div className="NotificationClose" onClick={showConfirm}>X</div>;
+  return (
+    <span onClick={showConfirm}>
+      <div className="NotificationClose">X</div>;
+    </span>
+  )
 };
 
 const NotificationCard = (props) => {
