@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { SessionContext, reducer, initialState } from '../store'
-import { BrowserRouter as Router, Switch, Route, Redirect, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import useServiceWorker from '../util/useServiceWorker';
 import Home from './home';
 import SignIn from './signIn';
@@ -84,16 +84,16 @@ const Routes = () => {
 		<SessionContext.Provider value={ {state, dispatch} }>
 			<Router>
 				{state.user ? (
-					<HashRouter>
+					<>
 						{ isAdmin ? adminRoutes : userRoutes }
-					</HashRouter>
+					</>
 				) : (
-					<HashRouter>
+					<>
 						<Route exact path="/" component={Home} />
 						<Route path="/sign-in" exact component={SignIn} />
 						<Route path="/contact-us" component={ContactUs} />
 						<Redirect from="*" to="/"/>
-					</HashRouter>
+					</>
 				)}
 			</Router>
 		</SessionContext.Provider>

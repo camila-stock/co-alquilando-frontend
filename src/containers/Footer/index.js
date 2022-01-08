@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { TwitterOutlined } from '@ant-design/icons';
 
 import './styles.scss';
@@ -7,17 +6,17 @@ import './styles.scss';
 const Footer = () => {
   return (
     <footer className='footer'>
-      <div className='footer__about'>
-        <span className="title"><Link>COALQUILANDO</Link></span>
+      <div className='footer__contact-us'>
+        <span className="title">CoAlquilando</span>
+        <a href="mailto:coalquilando@gmail.com">Contacto</a>
       </div>
       <div className='footer__contact-us'>
-        <span className="title">REDES SOCIALES</span>
-        <a href="mailto:coalquilando@gmail.com">Atención al Cliente</a>
-        <a href="mailto:coalquilando@gmail.com?subject=Contacto Publicidad">Publicidad</a>
+        <span className="title">Publicitá con nosotros</span>
+        <a href="mailto:coalquilando@gmail.com?subject=Contacto Publicidad">Contrataciones</a>
       </div>
       <div className='footer__media'>
-        <span className="title">REDES SOCIALES</span>
-        <Link to=''> <TwitterOutlined /> Twitter</Link>
+        <span className="title">Redes Sociales</span>
+        <a href='https://twitter.com/CoAlquilando'> <TwitterOutlined /> Twitter</a>
       </div>
     </footer>
   );

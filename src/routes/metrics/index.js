@@ -1,38 +1,66 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ContentWrapper from '../../components/ContentWrapper';
-import PieChart from '../../components/Charts/PieChart';
-import ColumChart from '../../components/Charts/ColumChart';
+import AdminMenuReports from '../../components/AdminMenuReports';
 import { SessionContext } from '../../store';
 import ApiRequest from '../../util/ApiRequest';
-import UserMenuReports from '../../components/UserMenuReports';
+import FilterNav from '../../components/FilterNav';
+
+const items = [
+	'Métricas de Propiedades',
+	'Métricas de Paquetes Contratados',
+];
 
 const Metrics = () => {
 
 	const [metric, setMetric] = useState();
-	const { state, dispatch } = useContext(SessionContext);
-	const breadscrumb = [{'Mis Reportes': '/reports'}]
+	const [error, setError] = useState();
+	const { state } = useContext(SessionContext);
+	const breadscrumb = [{'Mis Reportes': '/reports'}];
 
-	useEffect(
-		() => {
-			if (metric) return;
-			const getMetric = async () => {
-				await ApiRequest.get(`metric/owner/${state.user.id}`)
-					.then(({ data }) => {
-						setMetric(data);
-					})
-			};
-			getMetric();
-		},
-		[metric, state]
-	);
+	useEffect(() => {
+		const allData = true;
+		const from = new Date().toISOString(2020);
+		const to = new Date().toISOString(2022);
+		const body = { allData, from, to };
+		const getProms = async () => {
+			const allProm = await Promise.all([
+				ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
+				ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
+			]);
+			return allProm;
+		}
+		getProms().then((allProm) => {
+			const data = allProm.map((prom) => prom.data);
+			setMetric(data);
+		});
+	},[state.user.id])
+
+	const handleSearch = async dates => {
+			setMetric(null);
+			setError(null);
+			const allData = false;
+			const [ from, to ] = dates.map( f => f.split("T")[0]);
+			const body = { allData, from, to };
+			try {
+				const allProm = await Promise.all([
+					ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
+					ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
+				]);
+				const data = allProm.map( prom => prom.data);
+				setMetric(data);
+			} catch (error) {
+				setError('Hubo un error. Intente con otro rango de fechas.');			
+			}
+	}
 
 	return (
-		<ContentWrapper topNav footer breadscrumb={breadscrumb}>
-				<div className="page reports-admin">
-						<UserMenuReports metric={metric} />
-				</div>
-		</ContentWrapper>
-	)
+			<ContentWrapper topNav breadscrumb={breadscrumb} footer>
+					<div className="page reports-admin">
+							<FilterNav onSearch={handleSearch} />
+							<AdminMenuReports data={metric} items={items} error={error}/>
+					</div>
+			</ContentWrapper>
+	);
 };
 
 export default Metrics;

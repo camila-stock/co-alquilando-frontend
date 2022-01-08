@@ -20,7 +20,7 @@ export const useFetch = ( endpoint, params, dependencies ) => {
             }
         };
         asyncGet();
-    }, dependencies);
+    }, [dependencies, endpoint, params]);
 
     return [result, setResult, error]
 }

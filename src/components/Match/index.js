@@ -6,6 +6,7 @@ import {
 } from "antd";
 import Avatar from '../Avatar'
 import ModalGroup from "../ModalGroup";
+import hostname from '../../util/getHostName';
 
 const { Meta } = Card;
 
@@ -42,7 +43,10 @@ const Name = ({ name, coincidence }) => {
 };
 
 const UserCard = ({ user, coincidence } ) => {
-
+  const urlImage = user?.photos 
+  ? `${hostname}/user/${user?.id}/photos/${user?.photos[0]}`
+  : null;
+  
   const ViewProfile = ({ title }) => {
     return (
       <Link to={`profile/${user?.userNickname}`}>
@@ -61,7 +65,7 @@ const UserCard = ({ user, coincidence } ) => {
       ]}
     >
       <Meta
-        avatar={ <Avatar user={user} letter={user?.userName[0].toUpperCase()} url={ user?.photos ? `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/user/${user?.id}/photos/${user?.photos[0]}` : null} />}
+        avatar={<Avatar user={user} letter={user?.userName[0].toUpperCase()} url={urlImage} />}
         title={
           <Name name={user?.userName + " " + user?.userSurname} coincidence={coincidence} />
         }

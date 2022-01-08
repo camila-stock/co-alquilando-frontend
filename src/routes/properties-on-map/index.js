@@ -4,6 +4,7 @@ import { useFetch } from '../../hooks/useFetch';
 import ContentWrapper from '../../components/ContentWrapper';
 import FilterMap from '../../components/FilterMap';
 import Filters from '../../components/Filters';
+import hostname from '../../util/getHostName';
 import '../../styles/Properties.scss';
 
 const Property = () => {
@@ -60,7 +61,7 @@ const Property = () => {
 								onClick={() => toggleActions(selected.id)}
 							>
 								<img
-									src={`https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/property/${selected.id}/photos/${selected.photos ? selected.photos[0] : null}`}
+									src={`${hostname}/property/${selected.id}/photos/${selected.photos ? selected.photos[0] : null}`}
 									alt={selected.description}
 								/>
 								<summary>

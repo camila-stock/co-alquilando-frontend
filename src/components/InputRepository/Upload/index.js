@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import { SessionContext } from "../../../store";
+import hostname from '../../../util/getHostName';
 
 const CustomUpload = (props) => {
   const { state } = useContext(SessionContext);
@@ -30,7 +31,7 @@ const CustomUpload = (props) => {
               let photoJson = {
                 uid: index,
                 name: photo,
-                url: `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/property/${idProperty}/photos/${photo}`,
+                url: `${hostname}/property/${idProperty}/photos/${photo}`,
               };
               setFileList((fileList) => [...fileList, photoJson]);
             });
@@ -41,7 +42,7 @@ const CustomUpload = (props) => {
               let photoJson = {
                 uid: index,
                 name: photo,
-                url: `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/user/${state.user.id}/photos/${photo}`,
+                url: `${hostname}/user/${state.user.id}/photos/${photo}`,
               };
               setFileList((fileList) => [...fileList, photoJson]);
             });
@@ -53,7 +54,7 @@ const CustomUpload = (props) => {
                 let photoJson = {
                   uid: index,
                   name: photo,
-                  url: `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/ad/${idAd}/image/${photo}`,
+                  url: `${hostname}/ad/${idAd}/image/${photo}`,
                 };
                 setFileList((fileList) => [...fileList, photoJson]);
               });

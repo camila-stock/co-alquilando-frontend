@@ -6,13 +6,14 @@ import { LogoutOutlined, BellOutlined, TeamOutlined } from '@ant-design/icons';
 import Login from '../../components/Login';
 import Auth from '../../util/Auth';
 import isAdminRole from '../../util/isAdmin';
+import hostname from '../../util/getHostName';
 import logo from '../../assets/images/logonav.png'
 
 const Ring = ({ notifications }) => {
 	useEffect(() => { return () => { new AbortController().abort(); } })
 	return (
 		<Badge size="small" count={notifications}>
-			<BellOutlined />
+			<a href="/" style={{margin:0,padding:0}}><BellOutlined /></a>
 		</Badge>
 	);
 };
@@ -23,7 +24,7 @@ const Nav = ({notifications}) => {
 	const isAdmin = isAdminRole(state.user);
 
 	const image = (state.user && state.user.photos) ? 
-	`https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/user/${state.user.id}/photos/${state.user.photos[0]}` :
+	`${hostname}/user/${state.user.id}/photos/${state.user.photos[0]}` :
   	"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
 	const profileSignedIn = (

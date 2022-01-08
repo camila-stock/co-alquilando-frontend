@@ -34,6 +34,7 @@
 @import './Metrics.css';
 @import './AdList.scss';
 @import '../components//AdminMenuReports/style';
+@import '../components/FilterNav/styles';
 @import './AdImage.scss';
 
 body {
@@ -99,4 +100,9 @@ code {
   .userHome img {
     max-width: 50vw;
   }
+}
+
+.link-bell {
+  margin:0;
+  padding:0;
 }

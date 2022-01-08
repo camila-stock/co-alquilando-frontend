@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './FilterMap.scss';
 import MapMultiple from '../MapMultiple';
 import Spin from '../Spin';
@@ -7,20 +7,21 @@ const FilterMap = ({properties, selected, onFilter, seeOnMap}) => {
     const [ currentPosition, setCurrentPosition ] = useState({ lat: null, lng:null});
     const [ loadingMap, setLoadingMap ] = useState(false);
 
-	const getCurrentPosition = () => {
+	const getCurrentPosition = useCallback(() => {
         setLoadingMap(true)
         if (currentPosition.lat && currentPosition.lng ) {
             setCurrentPosition({ lat: null, lng:null})
             setLoadingMap(false);
             return
         }
-		navigator.geolocation.getCurrentPosition(({ coords }) => {
-			console.log(coords);
-			setCurrentPosition({ lat: coords.latitude, lng: coords.longitude });
+        navigator.geolocation.getCurrentPosition(({ coords }) => {
+            console.log(coords);
+            setCurrentPosition({ lat: coords.latitude, lng: coords.longitude });
             setLoadingMap(false);
             onFilter({ lat: (coords.latitude).toFixed(2) });
         });
-    };
+    }, [currentPosition, onFilter])
+
     useEffect(()=> {
         if (currentPosition.lat) return
         getCurrentPosition()

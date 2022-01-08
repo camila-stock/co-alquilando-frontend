@@ -93,7 +93,7 @@ const OnGoing = ({ votations, detail, setVotations }) => {
       setuserVote( vote );
     };
     getVotations();
-  }, [votations]);
+  }, [votations, userId, voteConfig]);
 
   const handleVote = async (vote) => {
     let bodyReq = {

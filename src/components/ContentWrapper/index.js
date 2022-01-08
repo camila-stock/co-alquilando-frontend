@@ -10,16 +10,17 @@ import Footer from '../../containers/Footer';
 const ContentWrapper = props => {
     const { state } = useContext(SessionContext);
     const [notifications, setNotifications] = useState();
+    const userId = state?.user?.id;
     useEffect(() => {
         if (notifications) return;
         let asyncGet = async () => {
           let { data } = await ApiRequest.get(
-            `/notifications/user/${state?.user?.id}`
+            `/notifications/user/${userId}`
           );
           setNotifications(data.length);
         };
         asyncGet();
-      }, [state?.user?.id, notifications]);
+      }, [userId, notifications]);
 
     return (
         <>

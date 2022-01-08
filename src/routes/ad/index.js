@@ -4,7 +4,6 @@ import adFields from "../../forms/POST_AD";
 import ContentWrapper from "../../components/ContentWrapper";
 import CustomizedForm from "../../components/CustomizedForm";
 import ApiRequest from "../../util/ApiRequest";
-import moment from "moment";
 
 const Ad = () => {
   const [form] = Form.useForm();

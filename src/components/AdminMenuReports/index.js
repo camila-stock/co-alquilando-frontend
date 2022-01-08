@@ -1,61 +1,33 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Menu, Switch, Divider } from 'antd';
-import PieChart from '../Charts/PieChart';
-import ColumChart from '../Charts/ColumChart';
-import Spin from '../Spin';
-import { SessionContext } from '../../store';
-import ApiRequest from '../../util/ApiRequest';
-
-const items = [
-  "Datos generales del sistema",
-  "Paquetes de publicaciones",
-  "Resultados en el último mes",
-  "Resultados en los últimos seis meses",
-  "Resultados en los último año",
-];
+import React, { useState } from 'react';
+import { Menu } from 'antd';
+import ChartRepository from '../Charts/ChartRepository';
 
 const AdminMenuReports = ({
-  metric
+  data,
+  items,
+  error,
 }) => {
     const [selectedItem, setselectedItem] = useState('0');
     const handleItem = ({key}) => setselectedItem(key);
 
-    const charts = metric && [
-      <div >
-        <div class="chart" id="pie-gral">
-          <PieChart metric={metric.propertiesTotal} keys={1} />
-          <PieChart metric={metric.usersTotal} keys={2} />
-          <PieChart metric={metric.groupTotal} keys={3} />
+    const newMetrics = data && data.map((d, index) => {
+      return (
+        <div key={index}>
+          <div className="metric-tab">
+            {Object.keys(d.singleData).map( labels => (
+              <div key={labels} style={{ display: "flex", gap: 8}}>
+                <div>{`${labels}:`}</div>
+                <div>{d.singleData[labels]}</div>
+              </div>
+            ))}
+          </div>
+          {d.charts.map((t, index) => <ChartRepository key={index} metric={t} />) }
         </div>
-      </div>,
-      <div>
-        <div class="chart" id="pie-paymentPackage">
-          <PieChart metric={metric.adQuantityTotal} keys={4} />
-          <ColumChart metric={metric.adProfitTotal} keys={5} />
-        </div>
-      </div>,
-      <div>
-        <div className="chart">
-          <ColumChart metric={metric.propertyAverageLastMonthTotal} keys={6} />
-          <ColumChart metric={metric.paymentPackageLastMonthTotal} keys={7} />
-        </div>
-      </div>,
-      <div>
-        <div class="chart">
-          <ColumChart metric={metric.propertyAverageLastSemesterTotal} keys={8} />
-          <ColumChart metric={metric.paymentPackageLastSemesterTotal} keys={9} />
-        </div>
-      </div>,
-      <div>
-        <div class="chart">
-          <ColumChart metric={metric.propertyAverageLastYearTotal} keys={10} />
-          <ColumChart metric={metric.paymentPackageLastYearTotal} keys={11} />
-        </div>
-      </div>
-    ];
+      )
+    })
 
     return (
-    <>
+    <div className='menu reports'>
       <Menu className="menu-admin-reports" defaultSelectedKeys={['0']}>
         {items.map( (item, index) => (
           <Menu.Item 
@@ -66,13 +38,15 @@ const AdminMenuReports = ({
           </Menu.Item>
         ))}
       </Menu>
-
       <section className="charts">
-        {metric 
-        ? charts[selectedItem] 
-        : <Spin />}
+        {data 
+          ? newMetrics[selectedItem] 
+          : "Ingrese fechas" }
+        {error 
+        ? <div style={{color: 'red'}}>{error}</div>
+        : null}
       </section>
-    </>
+    </div>
     );
 };
 

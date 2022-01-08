@@ -1,4 +1,5 @@
 import { register } from 'register-service-worker';
+import hostname from '../util/getHostName'
 
 function base64UrlToUint8Array(base64UrlData) {
 	const padding = '='.repeat((4 - base64UrlData.length % 4) % 4);
@@ -33,7 +34,7 @@ function sendSubscriptionToServer(subscription) {
 	formData.append('subscriptionJson', subscription);
 	formData.append('user', id);
 
-	fetch('https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/notifications/subscribe', {
+	fetch(`${hostname}/notifications/subscribe`, {
 		method: 'POST',
 		body: formData
 	});

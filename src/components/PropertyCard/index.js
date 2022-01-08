@@ -5,7 +5,7 @@ import { EditOutlined, EyeOutlined, UserOutlined } from '@ant-design/icons'
 import CarrouselPequeño from '../CarrouselPequeño';
 import ModalMapa from '../Modal';
 import { FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
-
+import hostname from '../../util/getHostName';
 
 const PropertyCard = props => {
     const { title, price, address, attributes, id, photos } = props;
@@ -22,6 +22,7 @@ const PropertyCard = props => {
         })
     }
     let typologies = {
+        "APARTMENT": "Departamento",
         "APARMENT": "Departamento",
         "HOUSE": "Casa"
     }
@@ -33,7 +34,7 @@ const PropertyCard = props => {
             let photoJson = {
                 caption: "", 
                 position: "",
-                imgUrl: `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/property/${id}/photos/${photo}`
+                imgUrl: `${hostname}/property/${id}/photos/${photo}`
             }
             setPhotoList(photoList => [...photoList, photoJson])
           })
@@ -94,12 +95,13 @@ const PropertyCard = props => {
                             <EyeOutlined />
                         </Button>
                         <Button>
-                          <div class="fb-share-button" data-href={`http://coalquilando.com/property/${id}`} data-layout="button_count" data-size="small">
+                          <div className="fb-share-button" data-href={`http://coalquilando.com/property/${id}`} data-layout="button_count" data-size="small">
                               <a 
                                   target="_blank" 
+                                  rel="noopener noreferrer"
                                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                                   href={`https://www.facebook.com/sharer/sharer.php?u=http://coalquilando.com/property/${id}`} 
-                                  class="fb-xfbml-parse-ignore">
+                                  className="fb-xfbml-parse-ignore">
                                   <FacebookOutlined />
                               </a>
                           </div>
@@ -107,9 +109,10 @@ const PropertyCard = props => {
                         <Button>
                           <div>
                             <a 
-                              class="twitter-share-button"
+                              className="twitter-share-button"
                               target="_blank" 
-                              href={`https://twitter.com/intent/tweet?text=Echale%20un%20vistazo%20a%20esta%20propiedad%20www.coalquilando.com/property/${id}`}
+                              rel="noopener noreferrer"
+                              href={`https://twitter.com/intent/tweet?text=Echale%20un%20vistazo%20a%20esta%20propiedad%20www.coalquilando.com.ar/property/${id}`}
                               data-size="large">
                               <TwitterOutlined />
                             </a>

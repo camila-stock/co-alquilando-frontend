@@ -7,6 +7,7 @@ import {
   ExclamationCircleOutlined,
 } from "@ant-design/icons";
 import ApiRequest from "../../util/ApiRequest";
+import hostname from '../../util/getHostName';
 import moment from "moment";
 
 const image = "http://anokha.world/images/not-found.png";
@@ -20,7 +21,7 @@ const AdCard = (props) => {
       let photoJSON = {
         caption: "",
         position: "",
-        imgUrl: `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/ad/${props.id}/image/${props.image}`,
+        imgUrl: `${hostname}/ad/${props.id}/image/${props.image}`,
       };
       setPhoto(photoJSON);
     };

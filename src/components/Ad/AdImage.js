@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getWindowSize from "../../util/getWindowSize";
 import ApiRequest from "../../util/ApiRequest";
+import hostname from '../../util/getHostName';
 
 const AdImage = (props) => {
   const { position } = props;
@@ -33,7 +34,7 @@ const AdImage = (props) => {
       <div className="ad-image__container">
         <a target="_blank" href={ad?.url}>
         <img
-          src={`https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/ad/${ad.id}/image/${ad.image}`}
+          src={`${hostname}/ad/${ad.id}/image/${ad.image}`}
           alt="ad"
         />
         </a>

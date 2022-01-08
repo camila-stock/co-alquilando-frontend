@@ -23,7 +23,7 @@ const Home = () => {
 			</div>
 
 			<section className="video-section">
-				<video className="video" loop autoPlay preload muted>
+				<video className="video" loop autoPlay preload="true" muted>
 					<source src={video} />
 				</video>
 
@@ -43,30 +43,30 @@ const Home = () => {
 			<section className="steps">
 				<div className="step-by-step">
 					<div className="step">
-						<h1 className="title">¿Buscás compañero de Alquiler?</h1>
+						<h1 className="title">Buscá compañeros de alquiler</h1>
 						<Steps current={3} progressDot direction="vertical">
 							<Step title="Registrate" description="Completá tus datos y accede a la plataforma." />
 							<Step
 								title="Personalizá tu Búsqueda"
-								description="Elegí tus preferencias para encontrar a tu compañero ideal."
+								description="Elegí tus preferencias para encontrar a tus compañeros ideales."
 							/>
 							<Step
 								title="Elegí tu Propiedad"
-								description="Navega entre las propiedades y compartilas con tu grupo."
+								description="Proponé tu lugar favorito y vótalo con tus compañeros."
 							/>
 						</Steps>
 					</div>
 
 					<div className="step">
-						<h1 className="title">¿Querés compartir tu alquiler?</h1>
+						<h1 className="title">Compartí tu alquiler</h1>
 						<Steps current={3} progressDot direction="vertical">
 							<Step title="Registrate" description="Completá tus datos y accede a la plataforma." />
 							<Step
 								title="Publicá tu propiedad"
-								description="Si vivís en una propiedad, ingresa los datos y comenzá tu búsqueda."
+								description="Completa los datos y comenzá tu búsqueda de compañeros."
 							/>
 							<Step
-								title="Encontrá compañero"
+								title="Encontrá tus compañeros"
 								description="Navegá entre los perfiles y elegí tus compañeros de vivienda."
 							/>
 						</Steps>
@@ -78,11 +78,11 @@ const Home = () => {
 							<Step title="Registrate" description="Completá tus datos y accede a la plataforma." />
 							<Step
 								title="Publicá tus propiedades"
-								description="Elegí tu paquete, y cargá los datos de tus propiedades."
+								description="Publicá sin costo tu primera propiedad."
 							/>
 							<Step
-								title="Encontrá inquilinos"
-								description="Gestioná los grupos, comunicate y concretá el pre-alquiler."
+								title="Encontrá tus inquilinos"
+								description="Gestioná los grupos, comunícate y alquila tu propiedad."
 							/>
 						</Steps>
 					</div>

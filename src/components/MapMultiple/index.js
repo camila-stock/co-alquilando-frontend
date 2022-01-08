@@ -1,7 +1,6 @@
 import React from 'react';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import housePin from '../../assets/Icons/house-pin.svg'
-import housePinSelected from '../../assets/Icons/house-pin.svg'
 
 const ClickeableMap = ({google, properties, selected, currentPosition, seeOnMap}) => {
 

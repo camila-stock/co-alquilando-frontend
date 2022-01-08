@@ -18,7 +18,7 @@ const propertyFields = {
 					name: [ 'attributes', 'typology' ],
 					component: 'Select',
 					options: [
-						{ name: 'Departamento', value: 'APARMENT' },
+						{ name: 'Departamento', value: 'APARTMENT' },
 						{ name: 'Casa', value: 'HOUSE' },
 						{ name: 'Otro', value: 'NOT_DEFINED' }
 					],

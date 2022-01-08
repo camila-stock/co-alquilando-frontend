@@ -6,7 +6,7 @@ import ContentWrapper from "../../components/ContentWrapper";
 import ModalGroup from "../../components/ModalGroup";
 import Spin from "../../components/Spin";
 import calculateAge from "../../util/CalculateAge";
-
+import hostname from "../../util/getHostName";
 
 const image =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
@@ -47,7 +47,7 @@ const Profile = (props) => {
             <div className="imageContent">
               <img
                 alt="imagen de perfil"
-                src={datos?.photos ? `https://ec2-34-219-1-255.us-west-2.compute.amazonaws.com:8080/user/${datos.id}/photos/${datos.photos[0]}`
+                src={datos?.photos ? `${hostname}/user/${datos.id}/photos/${datos.photos[0]}`
                 : image}
                 className="profileImage"
               />
