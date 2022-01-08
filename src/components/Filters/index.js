@@ -95,7 +95,7 @@ const FilterAds = ({onFilter}) => {
                             <Input size="small"/>
                         </Form.Item>
 
-                        <Form.Item name="status" label="Publicidades activas" valuePropName="checked">
+                        <Form.Item name="status" label="Activas" valuePropName="checked">
                             <Checkbox />
                         </Form.Item>
 

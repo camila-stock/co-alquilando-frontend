@@ -17,12 +17,6 @@ const adFields = {
           component: "InputCurrency",
           required: true,
         },
-        {
-          label: "Url del sitio",
-          name: "url",
-          component: "Input",
-          required: false,
-        },
       ],
       [
         {
