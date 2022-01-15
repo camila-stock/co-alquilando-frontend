@@ -53,7 +53,7 @@ const Close = ({ id, setNotifications, notifications }) => {
 
   return (
     <span onClick={showConfirm}>
-      <div className="NotificationClose">X</div>;
+      <div className="NotificationClose">X</div>
     </span>
   )
 };
