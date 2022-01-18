@@ -22,7 +22,7 @@ const MetricsAdmin = () => {
 		const body = { allData, from, to };
 		try {
 			const getProm = async () => {
-				const allProm = await Promise.allSettled([
+				const allProm = await Promise.all([
 					ApiRequest.post(`metrics/users`, body),
 					ApiRequest.post(`metrics/groups`, body),
 					ApiRequest.post(`metrics/properties`, body),
@@ -47,7 +47,7 @@ const MetricsAdmin = () => {
 		const [ from, to ] = dates.map((f) => f.split('T')[0]);
 		const body = { allData, from, to };
 		try {
-			const allProm = await Promise.allSettled([
+			const allProm = await Promise.all([
 				ApiRequest.post(`metrics/users`, body),
 				ApiRequest.post(`metrics/groups`, body),
 				ApiRequest.post(`metrics/properties`, body),

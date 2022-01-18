@@ -23,7 +23,7 @@ const Metrics = () => {
 		const to = new Date().toISOString(2022);
 		const body = { allData, from, to };
 		const getProms = async () => {
-			const allProm = await Promise.allSettled([
+			const allProm = await Promise.all([
 				ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
 				ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
 			]);
@@ -42,7 +42,7 @@ const Metrics = () => {
 			const [ from, to ] = dates.map( f => f.split("T")[0]);
 			const body = { allData, from, to };
 			try {
-				const allProm = await Promise.allSettled([
+				const allProm = await Promise.all([
 					ApiRequest.post(`metrics/user/${state.user.id}/properties`, body),
 					ApiRequest.post(`metrics/user/${state.user.id}/packages`, body),
 				]);
