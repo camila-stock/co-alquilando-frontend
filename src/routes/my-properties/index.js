@@ -48,7 +48,7 @@ const Property = () => {
   }, [state])
 
   return (
-    <ContentWrapper topNav breadscrumb={breadscrumb}>
+    <ContentWrapper topNav footer breadscrumb={breadscrumb}>
       <div className="contentMyProperties">
 
         <PackagePropertyInfo count={state.user.propertiesToPost} />

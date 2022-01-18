@@ -176,7 +176,7 @@ const UpdatePreferenciesForm = (props) => {
     }
   }, [fieldsRoom, idUser,history]);
   return (
-    <ContentWrapper topNav breadscrumb={breadscrumb}>
+    <ContentWrapper topNav footer breadscrumb={breadscrumb}>
       <CustomizedForm
         form={formRoom}
         data={userPreferenciesRoomie}

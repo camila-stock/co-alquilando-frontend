@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import getWindowSize from "../../util/getWindowSize";
-import { CloseCircleOutlined } from "@ant-design/icons";
 import ApiRequest from "../../util/ApiRequest";
 import hostname from '../../util/getHostName';
 
@@ -33,15 +34,17 @@ const AdImage = (props) => {
   const renderAdImage = () =>
     ad && (
       <div className="ad-image__container">
+        <a target="_blank" href={ad?.url}>
         <img
           src={`${hostname}/ad/${ad.id}/image/${ad.image}`}
           alt="ad"
         />
-        <CloseCircleOutlined
+        </a>
+        <div
           style={{color:"#fff"}}
           className="ad-image__button"
           onClick={closeAd}
-        />
+        >X</div>
       </div>
     );
 
