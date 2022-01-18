@@ -40,9 +40,12 @@ function sendSubscriptionToServer(subscription) {
       method: 'POST',
       body: formData
     });
-    alert("Subscribed!")
+    document.querySelector(".sw-status").classList.remove("inactive");
+    document.querySelector(".sw-status").classList.add("active");
   } catch (error) {
-    alert("Error", error)
+    console.error("Error", error)
+    document.querySelector(".sw-status").classList.remove("active");
+    document.querySelector(".sw-status").classList.add("inactive");
   }
 }
 
@@ -62,9 +65,9 @@ function subscribe() {
 			})
 			.catch(function(e) {
 				if (Notification.permission === 'denied') {
-					alert('Permission for Notifications was denied');
+					console.error('Permission for Notifications was denied');
 				} else {
-					alert('Unable to subscribe to push.', e);
+					console.error('Unable to subscribe to push.', e);
 				}
 			});
 	});
@@ -72,16 +75,20 @@ function subscribe() {
 
 self.addEventListener('DOMContentLoaded', function(event) {
   const user = localStorage.getItem('user');
-  if (!user) return;
+  if (!user) {
+    document.querySelector(".sw-status").classList.remove("active");
+    document.querySelector(".sw-status").classList.add("inactive");
+    return;
+  };
   const id = JSON.parse(user).id;
   if (!id) return;
 	console.log('DOMContentLoaded', event);
   Notification.requestPermission(function(result) {
 		if (result === 'denied') {
-			console.log("Permission wasn't granted. Allow a retry.");
+			console.error("Permission wasn't granted. Allow a retry.");
 			return;
 		} else if (result === 'default') {
-			console.log('The permission request was dismissed.');
+			console.error('The permission request was dismissed.');
 			return;
 		}
 
@@ -99,12 +106,16 @@ self.addEventListener('DOMContentLoaded', function(event) {
                 }
                 else {
                   sendSubscriptionToServer(subscription);
+                  document.querySelector(".sw-status").classList.remove("inactive");
+                  document.querySelector(".sw-status").classList.add("active");
                 }
               })
           })
         })
         .catch(function(e) {
-          alert("error", e)
+          console.error("error", e)
+          document.querySelector(".sw-status").classList.remove("active");
+          document.querySelector(".sw-status").classList.add("inactive");
         })
   })
 });

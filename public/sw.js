@@ -34,8 +34,9 @@ self.addEventListener('push', function (event) {
     return self.registration.showNotification(title, {
         body: data,
         icon: "./LOGO.jpg",
+        vibrate: [200, 100, 200],
         data: {
-            click_url: '/notifications'          
+            click_url: 'https://coalquilando.com.ar/notifications'          
         },
     });
 });
