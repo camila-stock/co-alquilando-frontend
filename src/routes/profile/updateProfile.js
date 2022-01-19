@@ -141,7 +141,7 @@ const UpdateForm = (props) => {
   };
 
   return (
-    <ContentWrapper topNav breadscrumb={breadscrumb}>
+    <ContentWrapper topNav  footer breadscrumb={breadscrumb}>
       <CustomizedForm
         form={form}
         data={userData}

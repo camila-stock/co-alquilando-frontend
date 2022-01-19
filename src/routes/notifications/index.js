@@ -24,7 +24,7 @@ const Notifications = (props) => {
   }, [state.user.id, notifications]);
 
   return (
-    <ContentWrapper topNav breadscrumb={breadscrumb}>
+    <ContentWrapper topNav footer breadscrumb={breadscrumb}>
       <div className="notifications">
 
         {!notifications ? <Spin /> : null}

@@ -5,7 +5,7 @@ import OptionsNav from './optionsNav';
 const AdminHome = () => {
 
 	return (
-		<ContentWrapper topNav >
+		<ContentWrapper topNav footer>
 			<OptionsNav />
 		</ContentWrapper>
 	);

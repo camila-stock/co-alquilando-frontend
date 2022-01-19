@@ -49,7 +49,7 @@ const Groups = () => {
 	}, [group, data])
 
     return (
-        <ContentWrapper topNav breadscrumb={breadscrumb} >
+        <ContentWrapper topNav breadscrumb={breadscrumb} footer>
             <GroupContext.Provider value={ {data, setData, detail, setDetail} }>
 
                 {!data ? <Spin /> :null}

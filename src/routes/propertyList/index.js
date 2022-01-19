@@ -32,7 +32,7 @@ const Property = () => {
 		},[ page, size, params ]);
 
 	return (
-    <ContentWrapper topNav optionsNav>
+    <ContentWrapper topNav footer optionsNav>
       <AdImage position="horizontal" />
 	  
       <div className="properties-wrapper">
