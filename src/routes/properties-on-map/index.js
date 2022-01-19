@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../../hooks/useFetch';
+import { notification } from 'antd';
 import ContentWrapper from '../../components/ContentWrapper';
 import FilterMap from '../../components/FilterMap';
 import Filters from '../../components/Filters';
 import hostname from '../../util/getHostName';
 import '../../styles/Properties.scss';
+import ApiRequest from '../../util/ApiRequest';
 
 const Property = () => {
 	const [ selected, setSelected ] = useState();
@@ -13,15 +14,27 @@ const Property = () => {
 	const [ page ] = useState(1);
 	const [ size ] = useState(9999);
 	const [ params, setParams ] = useState();
-	const [ properties, setResult ] = useFetch('/property/properties', { page: page - 1, size, ...params }, [
-		page,
-		size,
-		params
-	]);
+	const [ result, setResult] = useState()
 	const breadscrumb = [
 		{ "Listado de propiedades": "/" },
 		{ "Mapa": "/properties-on-map" },
 	  ];
+	
+	useEffect(() => {
+		let asyncGet = async () => {
+			try {
+					let { data: { content } } = await ApiRequest.get(`/property/properties`, {page, size,...params});
+					setResult(content);
+			} catch (e) {
+					notification.error({
+							message: `Error al obtener propiedades`,
+							placement: 'bottomLeft'
+					});
+			}
+	};
+	asyncGet();
+	},[ page, size, params ]);
+
 	const toggleActions = (id) => {
 		let node = document.getElementById(id);
 		let act = node.getElementsByClassName('actions');
@@ -29,8 +42,8 @@ const Property = () => {
 	};
 
 	const seeOnMap = (id, fromList) => {
-		const rest = properties.filter((p) => p.id !== id);
-		const prop = properties.find((p) => p.id === id);
+		const rest = result.filter((p) => p.id !== id);
+		const prop = result.find((p) => p.id === id);
 		setSelected(prop);
 		if (fromList) setOnMap(prop);
 		setResult([ prop, ...rest ]);
@@ -42,7 +55,7 @@ const Property = () => {
 	return (
 		<ContentWrapper topNav breadscrumb={breadscrumb}>
 			<div className="properties-container">
-				<FilterMap properties={properties} onFilter={setParams} seeOnMap={seeOnMap} selected={onMap} />
+				<FilterMap properties={result} onFilter={setParams} seeOnMap={seeOnMap} selected={onMap} />
 
 				<div className="map-filter-on-map">
 					<Link to={`/`}>Ver listado</Link>
