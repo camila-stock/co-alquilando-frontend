@@ -12,7 +12,7 @@ const Property = () => {
 	const [ selected, setSelected ] = useState();
 	const [ onMap, setOnMap ] = useState();
 	const [ page ] = useState(1);
-	const [ size ] = useState(9999);
+	const [ size ] = useState(-1);
 	const [ params, setParams ] = useState();
 	const [ result, setResult] = useState()
 	const breadscrumb = [

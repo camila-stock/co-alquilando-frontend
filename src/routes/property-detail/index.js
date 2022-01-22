@@ -23,7 +23,7 @@ const PropertyDetailRoute = () => {
 		},[ idProperty ]);
 
 	return (
-			<ContentWrapper topNav breadscrumb={breadscrumb}>
+			<ContentWrapper topNav breadscrumb={breadscrumb} footer>
 				<PropertyDetail {...property} />
 			</ContentWrapper>
 	);
