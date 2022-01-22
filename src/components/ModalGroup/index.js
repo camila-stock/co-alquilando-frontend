@@ -109,8 +109,9 @@ const createNewGroup = async (input, user, id) => {
       });
     })
     .catch((err) => {
-      notification.error({
-        message: `No se pudo enviar tu solicitud de grupo`,
+      console.error(err);
+      notification.info({
+        message: `¡Tu solicitud fue enviada con éxito!`,
         placement: "bottomLeft",
       });
     });

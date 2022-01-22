@@ -168,11 +168,11 @@ const CustomizedModal = (props) => {
         message: `¡${user.userName}, Bienvenido a CoAlquilando!`,
         placement: "bottomLeft",
       });
-	  if (isAdminRole(user)) {
-		history.push('/reports-admin');
-		return;
-	}
-      history.push("/");
+			if (isAdminRole(user)) {
+				window.location = "reports-admin"
+				return;
+			}
+      window.location = "/"
     }
   }, [dispatch, user, history]);
 

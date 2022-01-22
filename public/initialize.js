@@ -71,15 +71,17 @@ function subscribe() {
 
 function validatePathAndLocalStorage(){
   const pathname = window.location.pathname;
-  if (pathname !== '/') return;
+  if (pathname !== '/') return false;
   setTimeout(console.log, 3000);
   const user = localStorage.getItem('user');
-  if (!user) return;
+  if (!user) return false;
   const id = JSON.parse(user).id;
-  if (!id) return;
+  if (!id) return false;
+  return true;
 }
 self.addEventListener('DOMContentLoaded', function(event) {
-  validatePathAndLocalStorage();
+  const isValid = validatePathAndLocalStorage();
+  if (!isValid) return;
   Notification.requestPermission(function(result) {
 		if (result === 'denied') {
 			console.error("Permission wasn't granted. Allow a retry.");
