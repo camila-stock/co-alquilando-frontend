@@ -22,6 +22,9 @@ class Property{
             if( a[0] && a[1] ){
                 attrArray = [...attrArray, new Attribute( a[0], a[1], a[2] || 0 )]
             }
+            if (a[0] === 'ownerInhabited') {
+                attrArray = [...attrArray, new Attribute( a[0], a[1], a[2] || 0 )]
+            }
         })
         return attrArray.length ? attrArray : null;
     }
