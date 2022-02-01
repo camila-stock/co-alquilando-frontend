@@ -2,7 +2,7 @@ import React from 'react';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 
 const ChartRepository = ({ metric }) => {
-
+	
 	const commonsProps = {
 		height: 400,
 		width: 600,
@@ -14,6 +14,15 @@ const ChartRepository = ({ metric }) => {
 				}
 			}
 		},
+	}
+
+	const props = {
+		...commonsProps,
+		options:{
+			...commonsProps.options,
+			...metric?.data?.datasets?.[0]?.options
+		}
+		
 	}
 
 	const data = {
@@ -41,9 +50,9 @@ const ChartRepository = ({ metric }) => {
 	}
 
 	const repository = {
-		line:			<Line data={data} {...commonsProps}  />,
-		bar:			<Bar data={data} {...commonsProps}  />,
-		doughnut:	<Doughnut data={data} {...commonsProps} style={{ width: "50%" }} />,
+		line:			<Line data={data} {...props}  />,
+		bar:			<Bar data={data} {...props}  />,
+		doughnut:	<Doughnut data={data} {...props} style={{ width: "50%" }} />,
 	}
 
 	return (
