@@ -1,0 +1,15 @@
+
+.metric-container {
+  text-align: center;
+  padding: 36px 0;
+  border-top: 1px solid #d8d6d6;
+}
+
+.metric-graphic {
+  width: 70%;
+  margin: auto;
+  &--doughnut {
+    width: 50%;
+    margin: auto;
+  }
+}
