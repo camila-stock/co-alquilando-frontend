@@ -40,12 +40,8 @@ function sendSubscriptionToServer(subscription) {
       method: 'POST',
       body: formData
     });
-    document.querySelector(".sw-status").classList.remove("inactive");
-    document.querySelector(".sw-status").classList.add("active");
   } catch (error) {
     console.error("Error", error)
-    document.querySelector(".sw-status").classList.remove("active");
-    document.querySelector(".sw-status").classList.add("inactive");
   }
 }
 
@@ -73,16 +69,19 @@ function subscribe() {
 	});
 }
 
-self.addEventListener('DOMContentLoaded', function(event) {
+function validatePathAndLocalStorage(){
+  const pathname = window.location.pathname;
+  if (pathname !== '/') return false;
+  setTimeout(console.log, 3000);
   const user = localStorage.getItem('user');
-  if (!user) {
-    document.querySelector(".sw-status").classList.remove("active");
-    document.querySelector(".sw-status").classList.add("inactive");
-    return;
-  };
+  if (!user) return false;
   const id = JSON.parse(user).id;
-  if (!id) return;
-	console.log('DOMContentLoaded', event);
+  if (!id) return false;
+  return true;
+}
+self.addEventListener('DOMContentLoaded', function(event) {
+  const isValid = validatePathAndLocalStorage();
+  if (!isValid) return;
   Notification.requestPermission(function(result) {
 		if (result === 'denied') {
 			console.error("Permission wasn't granted. Allow a retry.");
@@ -95,7 +94,6 @@ self.addEventListener('DOMContentLoaded', function(event) {
     navigator.serviceWorker
       .register('/sw.js')
         .then(function(registration) {
-          console.log("registration: ", registration)
           navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
             serviceWorkerRegistration.pushManager
               .getSubscription()
@@ -106,16 +104,12 @@ self.addEventListener('DOMContentLoaded', function(event) {
                 }
                 else {
                   sendSubscriptionToServer(subscription);
-                  document.querySelector(".sw-status").classList.remove("inactive");
-                  document.querySelector(".sw-status").classList.add("active");
                 }
               })
           })
         })
         .catch(function(e) {
           console.error("error", e)
-          document.querySelector(".sw-status").classList.remove("active");
-          document.querySelector(".sw-status").classList.add("inactive");
         })
   })
 });

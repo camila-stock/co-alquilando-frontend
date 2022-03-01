@@ -91,7 +91,6 @@ const Nav = ({notifications}) => {
 								<div className="ant-dropdown-link">
 									<span className="userName">{state?.user.userName}</span>
 									<Avatar size={30} src={image} />
-									<span id="sw-status" className="sw-status"></span>
 								</div>
 							</Link>
 						</Dropdown>

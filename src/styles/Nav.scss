@@ -37,6 +37,9 @@ ul.principalNav {
 		box-shadow: 0.5px 0.5px 5px #d1d1d1;
 		color: #5dade2;
 	}
+	.ring-notification{
+		margin-top: 6px;
+	}
 }
 
 /* Desktop View */
@@ -54,27 +57,4 @@ ul.principalNav {
 			}
 		}
 	}
-}
-.sw-status{
-	visibility: hidden;
-}
-.sw-status::after {
-	visibility: visible;
-	content: '';
-	display: inline-block;
-	position: relative;
-	bottom: -12px;
-	right: 8px;
-	width: 10px;
-	height: 10px;
-	border-radius: 7.5px;
-	background-color: #aaaaaa;
-}
-
-.sw-status.active::after {
-	background-color: #52c41a;
-}
-
-.sw-status.inactive::after {
-	background-color: #c41a1a;
 }

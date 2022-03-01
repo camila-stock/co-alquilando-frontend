@@ -6,8 +6,8 @@ import ApiRequest from '../../util/ApiRequest';
 import FilterNav from '../../components/FilterNav';
 
 const items = [
-	'Métricas de Propiedades',
-	'Métricas de Paquetes Contratados',
+	'Propiedades',
+	'Paquetes Contratados',
 ];
 
 const Metrics = () => {
