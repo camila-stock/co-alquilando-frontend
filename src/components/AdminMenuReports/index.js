@@ -12,7 +12,7 @@ const AdminMenuReports = ({
 
     const newMetrics = data && data.map((d, index) => {
       return (
-        <div key={index}>
+        <div key={index} style={{ width:'100%', margin: 'auto' }}>
           <div className="metric-tab">
             {Object.keys(d.singleData).map( labels => (
               <div key={labels} style={{ display: "flex", gap: 8}}>

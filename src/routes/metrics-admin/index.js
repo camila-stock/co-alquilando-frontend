@@ -4,11 +4,11 @@ import AdminMenuReports from '../../components/AdminMenuReports';
 import ApiRequest from '../../util/ApiRequest';
 import FilterNav from '../../components/FilterNav';
 const items = [
-	'Métricas de Usuarios',
-	'Métricas de Grupos',
-	'Métricas de Propiedades',
-	'Métricas de Paquetes Contratados',
-	'Métricas de Publicidades'
+	'Usuarios',
+	'Grupos',
+	'Propiedades',
+	'Paquetes Contratados',
+	'Publicidades'
 ];
 const MetricsAdmin = () => {
 	const [ metric, setMetric ] = useState(null);
