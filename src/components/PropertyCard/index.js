@@ -78,7 +78,7 @@ const PropertyCard = props => {
                         <div className="pricePC"> 
                             <label>${rentPrice}</label>
                             <Tag className="tagPC" title="Tipología" >{ typologies[attr.typology] }</Tag>
-                            {attr?.ownerInhabited === true && <Tag color="blue" className="tagPC" title="Vivir con dueño" >{ <UserOutlined /> }</Tag>}
+                            {attr?.ownerInhabited === "true" && <Tag color="blue" className="tagPC" title="Vivir con dueño" >{ <UserOutlined /> }</Tag>}
                         </div>
                     </div>
 
