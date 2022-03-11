@@ -7,7 +7,7 @@ const items = [
 	'Usuarios',
 	'Grupos',
 	'Propiedades',
-	'Paquetes Contratados',
+	'Paquetes Comprados',
 	'Publicidades'
 ];
 const MetricsAdmin = () => {

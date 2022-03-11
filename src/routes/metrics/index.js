@@ -7,7 +7,7 @@ import FilterNav from '../../components/FilterNav';
 
 const items = [
 	'Propiedades',
-	'Paquetes Contratados',
+	'Paquetes Comprados',
 ];
 
 const Metrics = () => {
