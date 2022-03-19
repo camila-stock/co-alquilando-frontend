@@ -20,6 +20,7 @@ const ChartRepository = ({ metric }) => {
     options: {
       ...commonsProps.options,
       ...metric?.data?.datasets?.[0]?.options,
+      ...metric?.options,
     },
   };
 
