@@ -19,10 +19,9 @@ class Property{
         let entries = Object.entries(attrJson);
         let attrArray = [];
         entries.forEach( a => {
-            if( a[0] && a[1] ){
-                attrArray = [...attrArray, new Attribute( a[0], a[1], a[2] || 0 )]
-            }
             if (a[0] === 'ownerInhabited') {
+                attrArray = [...attrArray, new Attribute( a[0], a[1] || "false", a[2] || 0 )]
+            } else if (a[0] && a[1]) {
                 attrArray = [...attrArray, new Attribute( a[0], a[1], a[2] || 0 )]
             }
         })
