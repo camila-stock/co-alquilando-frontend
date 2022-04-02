@@ -250,9 +250,7 @@ const PayingLink = ({ payingLink }) => {
     <div className="section box payingLink">
       <p>Link de Pago </p>
       <div>
-        <Link to={`/${payingLink}`}>
-          {payingLink}
-        </Link>
+        <a href={payingLink} alt="Link de pago">{payingLink}</a>
       </div>
     </div>
   );
